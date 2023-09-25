@@ -34,7 +34,19 @@ function createBulletPoints(slidesTab){
 	}
 }
 
-function slider(id){
+document.querySelector(".arrow_left").addEventListener("click", left)
+document.querySelector(".arrow_right").addEventListener("click", right)
+
+function left(){
+	slider("left")
+}
+
+function right(){
+	slider("right")
+}
+
+
+function slider(direction){
 
 	let currentDot = document.querySelector(".dot_selected")
 	let currentImg = document.querySelector(".banner-img")
@@ -45,8 +57,8 @@ function slider(id){
 	let firstDot = document.getElementById('dot1')
 	let lastDot = document.getElementById('dot4')
 
-	if(id == 'arrow_right arrow'){
-		if(dotIdNumber != 4){
+	if(direction == 'right'){
+		if(dotIdNumber != slides.length){
 			currentDot.nextSibling.classList.add("dot_selected")
 		}
 		else{
@@ -56,13 +68,13 @@ function slider(id){
 		currentImg.setAttribute("src", "./assets/images/slideshow/" + slides[dotIdNumber]["image"])
 		tagLine.innerHTML = slides[dotIdNumber]["tagLine"]
 	}
-	else if(id == 'arrow_left arrow'){
+	else if(direction == 'left'){
 		if(dotIdNumber != 1){
 			currentDot.previousSibling.classList.add("dot_selected")
 		}
 		else{
 			lastDot.classList.add("dot_selected")
-			dotIdNumber = 5
+			dotIdNumber = slides.length + 1
 		}
 		currentImg.setAttribute("src", "./assets/images/slideshow/" + slides[dotIdNumber - 2]["image"])
 		tagLine.innerHTML = slides[dotIdNumber - 2]["tagLine"]
@@ -70,6 +82,4 @@ function slider(id){
 	else{
 		console.log('error')
 	}
-
-	console.log(dotIdNumber)
 }
